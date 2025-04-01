@@ -1,50 +1,87 @@
-# Welcome to your Expo app 👋
+# PoliceTrainingApp
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil para el entrenamiento y capacitación de oficiales de policía, desarrollada con React Native y Expo.
 
-## Get started
+## 🚀 Características Principales
 
-1. Install dependencies
+- 📚 Cursos interactivos de capacitación
+- 🎮 Simulaciones de situaciones reales
+- 📊 Seguimiento de progreso
+- 👤 Perfil personalizado
+- 🌙 Modo oscuro/claro
+- 🔔 Sistema de notificaciones
+- 📱 Diseño responsive
 
-   ```bash
-   npm install
-   ```
+## 🛠️ Tecnologías Utilizadas
 
-2. Start the app
+- React Native
+- Expo Router
+- TypeScript
+- Ionicons
+- React Navigation
 
-   ```bash
-    npx expo start
-   ```
+## 📋 Requisitos Previos
 
-In the output, you'll find options to open the app in a
+- Node.js (v14 o superior)
+- npm o yarn
+- Expo CLI
+- iOS Simulator (para Mac) o Android Studio (para Windows/Linux)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🔧 Instalación
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+1. Clonar el repositorio:
 ```bash
-npm run reset-project
+git clone https://github.com/tu-usuario/PoliceTrainingApp.git
+cd PoliceTrainingApp
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Instalar dependencias:
+```bash
+npm install
+# o
+yarn install
+```
 
-## Learn more
+3. Iniciar la aplicación:
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📱 Estructura del Proyecto
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```
+PoliceTrainingApp/
+├── app/                    # Directorio principal de la aplicación
+│   ├── (auth)/            # Pantallas de autenticación
+│   ├── (tabs)/            # Navegación principal
+│   ├── (modals)/          # Pantallas modales
+│   ├── (course)/          # Módulo de cursos
+│   ├── (simulation)/      # Módulo de simulaciones
+│   └── _layout.tsx        # Layout principal
+├── assets/                # Recursos estáticos
+├── components/            # Componentes reutilizables
+└── types/                 # Definiciones de tipos
+```
 
-## Join the community
+## 📄 Documentación
 
-Join our community of developers creating universal apps.
+- [Documentación Técnica](docs/TECHNICAL.md)
+- [Documentación No Técnica](docs/NON_TECHNICAL.md)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🤝 Contribución
+
+Las contribuciones son bienvenidas. Por favor, lee el archivo [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
+
+## 👥 Autores
+
+- Daniel Mateus - Desarrollador Principal
+
+## 🙏 Agradecimientos
+
+- Policía Nacional de Colombia
+- Equipo de desarrollo
+- Todos los contribuidores
