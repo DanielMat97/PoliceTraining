@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import { useColorScheme } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { colors } from "../_layout";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -8,11 +9,15 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colorScheme === "dark" ? "#ECEDEE" : "#11181C",
-        tabBarInactiveTintColor: colorScheme === "dark" ? "#9BA1A6" : "#687076",
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colorScheme === "dark" ? colors.text.dark.secondary : colors.text.light.secondary,
         tabBarStyle: {
-          backgroundColor: colorScheme === "dark" ? "#151718" : "#fff",
+          backgroundColor: colorScheme === "dark" ? colors.background.dark : colors.background.light,
         },
+        headerStyle: {
+          backgroundColor: colorScheme === "dark" ? colors.background.dark : colors.background.light,
+        },
+        headerTintColor: colorScheme === "dark" ? colors.text.dark.primary : colors.text.light.primary,
       }}
     >
       <Tabs.Screen
@@ -20,7 +25,7 @@ export default function TabLayout() {
         options={{
           title: "Inicio",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
+            <Ionicons name="home-outline" size={size} color={color} />
           ),
         }}
       />
@@ -29,7 +34,7 @@ export default function TabLayout() {
         options={{
           title: "Cursos",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book" size={size} color={color} />
+            <Ionicons name="book-outline" size={size} color={color} />
           ),
         }}
       />
@@ -38,7 +43,7 @@ export default function TabLayout() {
         options={{
           title: "Simulaciones",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="game-controller" size={size} color={color} />
+            <Ionicons name="game-controller-outline" size={size} color={color} />
           ),
         }}
       />
@@ -47,7 +52,7 @@ export default function TabLayout() {
         options={{
           title: "Progreso",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="stats-chart" size={size} color={color} />
+            <Ionicons name="stats-chart-outline" size={size} color={color} />
           ),
         }}
       />
@@ -56,7 +61,16 @@ export default function TabLayout() {
         options={{
           title: "Perfil",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" size={size} color={color} />
+            <Ionicons name="person-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="resources"
+        options={{
+          title: "Recursos",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="library-outline" size={size} color={color} />
           ),
         }}
       />

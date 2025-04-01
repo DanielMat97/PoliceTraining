@@ -1,42 +1,43 @@
-import { useState } from "react";
 import {
   View,
   Text,
+  StyleSheet,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
   Image,
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { useColorScheme } from "react-native";
+import { useState } from "react";
+import { colors } from "../_layout";
 
 export default function LoginScreen() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const colorScheme = useColorScheme();
   const router = useRouter();
 
   const handleLogin = async () => {
-    if (!username || !password) return;
-    
+    if (!username || !password) {
+      Alert.alert("Error", "Por favor ingresa tu número de placa y contraseña");
+      return;
+    }
+
     setLoading(true);
-    // Simular delay de autenticación
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setLoading(false);
-    router.replace("/(tabs)");
+    // Simular autenticación
+    setTimeout(() => {
+      setLoading(false);
+      router.replace("/(tabs)");
+    }, 1500);
   };
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={[
-        styles.container,
-        { backgroundColor: colorScheme === "dark" ? "#151718" : "#fff" },
-      ]}
+      style={styles.container}
     >
       <View style={styles.logoContainer}>
         <Image
@@ -44,63 +45,34 @@ export default function LoginScreen() {
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text
-          style={[
-            styles.title,
-            { color: colorScheme === "dark" ? "#ECEDEE" : "#11181C" },
-          ]}
-        >
-          Entrenamiento Policial
-        </Text>
-        <Text
-          style={[
-            styles.subtitle,
-            { color: colorScheme === "dark" ? "#9BA1A6" : "#687076" },
-          ]}
-        >
-          POLICE TRAINING
-        </Text>
+        <Text style={styles.title}>Policía Nacional</Text>
+        <Text style={styles.subtitle}>Sistema de Entrenamiento Virtual</Text>
       </View>
 
       <View style={styles.formContainer}>
         <TextInput
-          style={[
-            styles.input,
-            {
-              backgroundColor: colorScheme === "dark" ? "#1E1E1E" : "#F5F5F5",
-              color: colorScheme === "dark" ? "#ECEDEE" : "#11181C",
-            },
-          ]}
+          style={styles.input}
           placeholder="Número de Placa"
-          placeholderTextColor={colorScheme === "dark" ? "#9BA1A6" : "#687076"}
+          placeholderTextColor="#687076"
           value={username}
           onChangeText={setUsername}
           autoCapitalize="none"
-          keyboardType="numeric"
+          editable={!loading}
         />
-
         <TextInput
-          style={[
-            styles.input,
-            {
-              backgroundColor: colorScheme === "dark" ? "#1E1E1E" : "#F5F5F5",
-              color: colorScheme === "dark" ? "#ECEDEE" : "#11181C",
-            },
-          ]}
+          style={styles.input}
           placeholder="Contraseña"
-          placeholderTextColor={colorScheme === "dark" ? "#9BA1A6" : "#687076"}
+          placeholderTextColor="#687076"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          editable={!loading}
         />
 
         <TouchableOpacity
-          style={[
-            styles.loginButton,
-            (!username || !password) && styles.loginButtonDisabled,
-          ]}
+          style={[styles.loginButton, loading && styles.loginButtonDisabled]}
           onPress={handleLogin}
-          disabled={loading || !username || !password}
+          disabled={loading}
         >
           {loading ? (
             <ActivityIndicator color="#fff" />
@@ -109,14 +81,16 @@ export default function LoginScreen() {
           )}
         </TouchableOpacity>
 
-        <Text
-          style={[
-            styles.forgotPassword,
-            { color: colorScheme === "dark" ? "#9BA1A6" : "#687076" },
-          ]}
+        <TouchableOpacity 
+          style={styles.forgotPassword}
+          disabled={loading}
         >
-          ¿Olvidaste tu contraseña?
-        </Text>
+          <Text style={styles.forgotPasswordText}>¿Olvidaste tu contraseña?</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Dios y Patria</Text>
       </View>
     </KeyboardAvoidingView>
   );
@@ -125,57 +99,73 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 20,
+    backgroundColor: "#fff",
   },
   logoContainer: {
     alignItems: "center",
+    marginTop: 60,
     marginBottom: 40,
   },
   logo: {
-    width: 120,
-    height: 120,
-    marginBottom: 16,
+    width: 150,
+    height: 150,
+    marginBottom: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "bold",
+    color: colors.primary,
     marginBottom: 8,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 18,
+    color: "#687076",
   },
   formContainer: {
-    width: "100%",
-    gap: 16,
+    paddingHorizontal: 24,
   },
   input: {
-    width: "100%",
-    height: 50,
+    backgroundColor: "#F1F3F5",
     borderRadius: 8,
-    paddingHorizontal: 16,
+    padding: 16,
+    marginBottom: 16,
     fontSize: 16,
+    borderWidth: 1,
+    borderColor: "#E0E0E0",
   },
   loginButton: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "#0a7ea4",
+    backgroundColor: colors.primary,
     borderRadius: 8,
-    justifyContent: "center",
+    padding: 16,
     alignItems: "center",
-    marginTop: 16,
+    marginTop: 8,
   },
   loginButtonDisabled: {
-    backgroundColor: "#ccc",
+    opacity: 0.7,
   },
   loginButtonText: {
     color: "#fff",
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "600",
   },
   forgotPassword: {
-    textAlign: "center",
+    alignItems: "center",
     marginTop: 16,
+  },
+  forgotPasswordText: {
+    color: colors.accent,
     fontSize: 14,
+  },
+  footer: {
+    position: "absolute",
+    bottom: 40,
+    left: 0,
+    right: 0,
+    alignItems: "center",
+  },
+  footerText: {
+    color: colors.primary,
+    fontSize: 16,
+    fontWeight: "500",
   },
 }); 
